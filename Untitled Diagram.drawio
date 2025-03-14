@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36" version="26.1.0">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
-    <mxGraphModel dx="2261" dy="2035" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2876" dy="2406" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
@@ -43,7 +43,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="oj4y6Ip84oqnXmlfz5-U-4" value="Sensor" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="80" y="400" width="200" height="86" as="geometry" />
+          <mxGeometry x="780" y="-340" width="200" height="86" as="geometry" />
         </mxCell>
         <mxCell id="oj4y6Ip84oqnXmlfz5-U-5" value="sensor_unit: str" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="oj4y6Ip84oqnXmlfz5-U-4">
           <mxGeometry y="26" width="200" height="26" as="geometry" />
@@ -55,7 +55,7 @@
           <mxGeometry y="60" width="200" height="26" as="geometry" />
         </mxCell>
         <mxCell id="oj4y6Ip84oqnXmlfz5-U-8" value="Actuator" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="370" y="400" width="160" height="138" as="geometry" />
+          <mxGeometry x="1070" y="-340" width="160" height="138" as="geometry" />
         </mxCell>
         <mxCell id="oj4y6Ip84oqnXmlfz5-U-9" value="state: str" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="oj4y6Ip84oqnXmlfz5-U-8">
           <mxGeometry y="26" width="160" height="26" as="geometry" />
@@ -73,34 +73,22 @@
           <mxGeometry y="112" width="160" height="26" as="geometry" />
         </mxCell>
         <mxCell id="oj4y6Ip84oqnXmlfz5-U-14" value="&#39;&#39;En ny boks for hver sensor type&#39;&#39;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="20" y="630" width="270" height="86" as="geometry" />
+          <mxGeometry x="720" y="-110" width="270" height="92" as="geometry" />
         </mxCell>
         <mxCell id="oj4y6Ip84oqnXmlfz5-U-15" value="sensor_unit, blir definert feks Celsius % osv" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="oj4y6Ip84oqnXmlfz5-U-14">
-          <mxGeometry y="26" width="270" height="26" as="geometry" />
+          <mxGeometry y="26" width="270" height="32" as="geometry" />
         </mxCell>
         <mxCell id="oj4y6Ip84oqnXmlfz5-U-16" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="oj4y6Ip84oqnXmlfz5-U-14">
-          <mxGeometry y="52" width="270" height="8" as="geometry" />
+          <mxGeometry y="58" width="270" height="8" as="geometry" />
         </mxCell>
         <mxCell id="oj4y6Ip84oqnXmlfz5-U-18" value="+ random tall for å simulere måling" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="oj4y6Ip84oqnXmlfz5-U-14">
-          <mxGeometry y="60" width="270" height="26" as="geometry" />
+          <mxGeometry y="66" width="270" height="26" as="geometry" />
         </mxCell>
         <mxCell id="oj4y6Ip84oqnXmlfz5-U-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.51;entryY=1.038;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="oj4y6Ip84oqnXmlfz5-U-14" target="oj4y6Ip84oqnXmlfz5-U-7">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="oj4y6Ip84oqnXmlfz5-U-20" value="&#39;&#39;En ny boks for hvere&#39;&#39;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="670" y="680" width="210" height="86" as="geometry" />
-        </mxCell>
-        <mxCell id="oj4y6Ip84oqnXmlfz5-U-21" value="sensor_unit, feks Celsius % osv" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="oj4y6Ip84oqnXmlfz5-U-20">
-          <mxGeometry y="26" width="210" height="26" as="geometry" />
-        </mxCell>
-        <mxCell id="oj4y6Ip84oqnXmlfz5-U-22" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="oj4y6Ip84oqnXmlfz5-U-20">
-          <mxGeometry y="52" width="210" height="8" as="geometry" />
-        </mxCell>
-        <mxCell id="oj4y6Ip84oqnXmlfz5-U-23" value="+ random tall for å simulere måling" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="oj4y6Ip84oqnXmlfz5-U-20">
-          <mxGeometry y="60" width="210" height="26" as="geometry" />
-        </mxCell>
-        <mxCell id="oj4y6Ip84oqnXmlfz5-U-24" value="TempSensor, HumidSensor, CO2Sensor, PowerSensor" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry y="730" width="320" height="30" as="geometry" />
+        <mxCell id="oj4y6Ip84oqnXmlfz5-U-24" value="motion_sensor, TempSensor, HumidSensor, CO2Sensor, PowerSensor" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="660" y="-10" width="400" height="30" as="geometry" />
         </mxCell>
         <mxCell id="oj4y6Ip84oqnXmlfz5-U-27" value="Buildings" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="270" y="-400" width="160" height="86" as="geometry">
@@ -189,46 +177,93 @@
           <mxGeometry x="380" y="133" width="280" height="40" as="geometry" />
         </mxCell>
         <mxCell id="oj4y6Ip84oqnXmlfz5-U-71" value="&lt;div&gt;todo historiske data for sensor&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="30" y="340" width="180" height="40" as="geometry" />
+          <mxGeometry x="730" y="-400" width="180" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="oj4y6Ip84oqnXmlfz5-U-72" value="R" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="640" y="210" width="160" height="138" as="geometry" />
-        </mxCell>
-        <mxCell id="oj4y6Ip84oqnXmlfz5-U-73" value="state: str" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="oj4y6Ip84oqnXmlfz5-U-72">
-          <mxGeometry y="26" width="160" height="26" as="geometry" />
-        </mxCell>
-        <mxCell id="oj4y6Ip84oqnXmlfz5-U-74" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="oj4y6Ip84oqnXmlfz5-U-72">
-          <mxGeometry y="52" width="160" height="8" as="geometry" />
-        </mxCell>
-        <mxCell id="oj4y6Ip84oqnXmlfz5-U-75" value="+ turn_on():&amp;nbsp;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="oj4y6Ip84oqnXmlfz5-U-72">
-          <mxGeometry y="60" width="160" height="26" as="geometry" />
-        </mxCell>
-        <mxCell id="oj4y6Ip84oqnXmlfz5-U-76" value="+ turn_off():&amp;nbsp;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="oj4y6Ip84oqnXmlfz5-U-72">
-          <mxGeometry y="86" width="160" height="26" as="geometry" />
-        </mxCell>
-        <mxCell id="oj4y6Ip84oqnXmlfz5-U-77" value="+ is_active():&amp;nbsp;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="oj4y6Ip84oqnXmlfz5-U-72">
-          <mxGeometry y="112" width="160" height="26" as="geometry" />
-        </mxCell>
-        <mxCell id="oj4y6Ip84oqnXmlfz5-U-78" value="ActuatorStupid" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="380" y="600" width="160" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="oj4y6Ip84oqnXmlfz5-U-79" value="state: str" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="oj4y6Ip84oqnXmlfz5-U-78">
-          <mxGeometry y="26" width="160" height="26" as="geometry" />
+        <mxCell id="oj4y6Ip84oqnXmlfz5-U-78" value="ActuatorOnOff" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1080" y="-140" width="160" height="34" as="geometry" />
         </mxCell>
         <mxCell id="oj4y6Ip84oqnXmlfz5-U-80" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="oj4y6Ip84oqnXmlfz5-U-78">
-          <mxGeometry y="52" width="160" height="8" as="geometry" />
+          <mxGeometry y="26" width="160" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="oj4y6Ip84oqnXmlfz5-U-84" value="ActuatorNumeric" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="590" y="600" width="160" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="oj4y6Ip84oqnXmlfz5-U-85" value="state: str" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="oj4y6Ip84oqnXmlfz5-U-84">
-          <mxGeometry y="26" width="160" height="26" as="geometry" />
-        </mxCell>
-        <mxCell id="oj4y6Ip84oqnXmlfz5-U-86" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="oj4y6Ip84oqnXmlfz5-U-84">
-          <mxGeometry y="52" width="160" height="8" as="geometry" />
+        <mxCell id="oj4y6Ip84oqnXmlfz5-U-115" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="oj4y6Ip84oqnXmlfz5-U-87" target="oj4y6Ip84oqnXmlfz5-U-88">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="oj4y6Ip84oqnXmlfz5-U-87" value="&lt;p style=&quot;box-sizing: border-box; margin-top: 0px; margin-bottom: var(--base-size-16); color: rgb(31, 35, 40); font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, &amp;quot;Noto Sans&amp;quot;, Helvetica, Arial, sans-serif, &amp;quot;Apple Color Emoji&amp;quot;, &amp;quot;Segoe UI Emoji&amp;quot;; font-size: 16px; text-align: start; text-wrap-mode: wrap; background-color: rgb(255, 255, 255);&quot; dir=&quot;auto&quot;&gt;Aktuatorer er enheter som påvirker de fysiske omgivelsene. Eksempler er panelovner, varmepumper, luftavfuktere, stikkkontakter, lyspærer osv. Aktuatorer har en&amp;nbsp;&lt;em style=&quot;box-sizing: border-box;&quot;&gt;tilstand&lt;/em&gt;&amp;nbsp;og funksjoner til å forandre denne interne tilstanden. Noen aktuatorer kan bare slås av og på (f.eks. stikkontakt eller lyspære uten dimmer) mens andre kan styres i større grad (f.eks. kan varmepumpen settes til et ønsket temperatur som&amp;nbsp;&lt;code style=&quot;box-sizing: border-box; font-family: var(--fontStack-monospace, ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace); font-size: 13.6px; padding: 0.2em 0.4em; margin: 0px; white-space-collapse: break-spaces; background-color: var(--bgColor-neutral-muted, var(--color-neutral-muted)); border-radius: 6px;&quot;&gt;21.3 °C&lt;/code&gt;).&lt;/p&gt;&lt;p style=&quot;box-sizing: border-box; margin-top: 0px; margin-bottom: var(--base-size-16); color: rgb(31, 35, 40); font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, &amp;quot;Noto Sans&amp;quot;, Helvetica, Arial, sans-serif, &amp;quot;Apple Color Emoji&amp;quot;, &amp;quot;Segoe UI Emoji&amp;quot;; font-size: 16px; text-align: start; text-wrap-mode: wrap; background-color: rgb(255, 255, 255);&quot; dir=&quot;auto&quot;&gt;Til syvende og sist må det nevnes at noen enheter både viser sensor og aktutor egenskaper (f.eks en styrbart stikkontakt som samtidig måler strømmen) eller at noen sensorer måler forskjellige verdier samtidig (f.eks. en&amp;nbsp;&lt;em style=&quot;box-sizing: border-box;&quot;&gt;luftkvalitetssensor&lt;/em&gt;&amp;nbsp;måler CO2, luftfuktighet og VOC (flyktige organiske forbindelser) samtidig).&lt;/p&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;box-sizing: border-box; position: relative; color: rgb(31, 35, 40); font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, &amp;quot;Noto Sans&amp;quot;, Helvetica, Arial, sans-serif, &amp;quot;Apple Color Emoji&amp;quot;, &amp;quot;Segoe UI Emoji&amp;quot;; font-size: 16px; text-align: start; text-wrap-mode: wrap; background-color: rgb(255, 255, 255);&quot; dir=&quot;auto&quot; class=&quot;markdown-heading&quot;&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="-10" y="140" width="1940" height="100" as="geometry" />
+          <mxGeometry x="130" y="565" width="1940" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="oj4y6Ip84oqnXmlfz5-U-88" value="&lt;div style=&quot;box-sizing: border-box; position: relative; color: rgb(31, 35, 40); font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, &amp;quot;Noto Sans&amp;quot;, Helvetica, Arial, sans-serif, &amp;quot;Apple Color Emoji&amp;quot;, &amp;quot;Segoe UI Emoji&amp;quot;; font-size: 16px; text-align: start; text-wrap-mode: wrap; background-color: rgb(255, 255, 255);&quot; dir=&quot;auto&quot; class=&quot;markdown-heading&quot;&gt;&lt;h3 style=&quot;box-sizing: border-box; margin-top: var(--base-size-24); margin-bottom: var(--base-size-16); font-size: 1.25em; font-weight: var(--base-text-weight-semibold, 600); line-height: 1.25;&quot; dir=&quot;auto&quot; class=&quot;heading-element&quot; tabindex=&quot;-1&quot;&gt;&lt;br&gt;&lt;/h3&gt;&lt;/div&gt;&lt;ul style=&quot;box-sizing: border-box; padding-left: 2em; margin-top: 0px; margin-bottom: var(--base-size-16); color: rgb(31, 35, 40); font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, &amp;quot;Noto Sans&amp;quot;, Helvetica, Arial, sans-serif, &amp;quot;Apple Color Emoji&amp;quot;, &amp;quot;Segoe UI Emoji&amp;quot;; font-size: 16px; text-align: start; text-wrap-mode: wrap; background-color: rgb(255, 255, 255);&quot; dir=&quot;auto&quot;&gt;&lt;li style=&quot;box-sizing: border-box; margin-top: 0.25em;&quot;&gt;&lt;code style=&quot;box-sizing: border-box; font-family: var(--fontStack-monospace, ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace); font-size: 13.6px; padding: 0.2em 0.4em; margin: 0px; white-space-collapse: break-spaces; background-color: var(--bgColor-neutral-muted, var(--color-neutral-muted)); border-radius: 6px;&quot;&gt;get_device_type()&lt;/code&gt;.Sistnevnte funksjon returnerer en tekst (&lt;code style=&quot;box-sizing: border-box; font-family: var(--fontStack-monospace, ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace); font-size: 13.6px; padding: 0.2em 0.4em; margin: 0px; white-space-collapse: break-spaces; background-color: var(--bgColor-neutral-muted, var(--color-neutral-muted)); border-radius: 6px;&quot;&gt;str&lt;/code&gt;) som beskriver hva konkret type enhet det er, f.eks&amp;nbsp;&lt;code style=&quot;box-sizing: border-box; font-family: var(--fontStack-monospace, ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace); font-size: 13.6px; padding: 0.2em 0.4em; margin: 0px; white-space-collapse: break-spaces; background-color: var(--bgColor-neutral-muted, var(--color-neutral-muted)); border-radius: 6px;&quot;&gt;Heat Pump&lt;/code&gt;,&amp;nbsp;&lt;code style=&quot;box-sizing: border-box; font-family: var(--fontStack-monospace, ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace); font-size: 13.6px; padding: 0.2em 0.4em; margin: 0px; white-space-collapse: break-spaces; background-color: var(--bgColor-neutral-muted, var(--color-neutral-muted)); border-radius: 6px;&quot;&gt;Smart Lock&lt;/code&gt;, osv.&lt;/li&gt;&lt;li style=&quot;box-sizing: border-box; margin-top: 0.25em;&quot;&gt;Alle sensorer skal tilby en metode&amp;nbsp;&lt;code style=&quot;box-sizing: border-box; font-family: var(--fontStack-monospace, ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace); font-size: 13.6px; padding: 0.2em 0.4em; margin: 0px; white-space-collapse: break-spaces; background-color: var(--bgColor-neutral-muted, var(--color-neutral-muted)); border-radius: 6px;&quot;&gt;last_measurement&lt;/code&gt;&amp;nbsp;som returnerer en objekt av type&amp;nbsp;&lt;code style=&quot;box-sizing: border-box; font-family: var(--fontStack-monospace, ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace); font-size: 13.6px; padding: 0.2em 0.4em; margin: 0px; white-space-collapse: break-spaces; background-color: var(--bgColor-neutral-muted, var(--color-neutral-muted)); border-radius: 6px;&quot;&gt;Measurement&lt;/code&gt;. Målenheten i målingen skal samsvare med måleenheten av sensoren (f.eks. måler en temperaturmåler in enheten celsius:&amp;nbsp;&lt;code style=&quot;box-sizing: border-box; font-family: var(--fontStack-monospace, ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace); font-size: 13.6px; padding: 0.2em 0.4em; margin: 0px; white-space-collapse: break-spaces; background-color: var(--bgColor-neutral-muted, var(--color-neutral-muted)); border-radius: 6px;&quot;&gt;&quot;°C&quot;&lt;/code&gt;). For verdien kan du velge en helt tilfeldig numerisk verdi (du kan f.eks. bruke&amp;nbsp;&lt;a style=&quot;box-sizing: border-box; background-color: transparent; text-underline-offset: 0.2rem;&quot; rel=&quot;nofollow&quot; href=&quot;https://docs.python.org/3/library/random.html&quot;&gt;random modulen&lt;/a&gt;) og&amp;nbsp;&lt;code style=&quot;box-sizing: border-box; font-family: var(--fontStack-monospace, ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace); font-size: 13.6px; padding: 0.2em 0.4em; margin: 0px; white-space-collapse: break-spaces; background-color: var(--bgColor-neutral-muted, var(--color-neutral-muted)); border-radius: 6px;&quot;&gt;timestamp&lt;/code&gt;&amp;nbsp;skal være en tekstuell representasjon av et tidspunkt (du kan f.eks. bruke&amp;nbsp;&lt;a style=&quot;box-sizing: border-box; background-color: transparent; text-underline-offset: 0.2rem;&quot; rel=&quot;nofollow&quot; href=&quot;https://en.wikipedia.org/wiki/ISO_8601&quot;&gt;ISO-8601&lt;/a&gt;).&lt;/li&gt;&lt;li style=&quot;box-sizing: border-box; margin-top: 0.25em;&quot;&gt;Alle aktuatorer skal tilby metodene:&amp;nbsp;&lt;code style=&quot;box-sizing: border-box; font-family: var(--fontStack-monospace, ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace); font-size: 13.6px; padding: 0.2em 0.4em; margin: 0px; white-space-collapse: break-spaces; background-color: var(--bgColor-neutral-muted, var(--color-neutral-muted)); border-radius: 6px;&quot;&gt;turn_on()&lt;/code&gt;,&amp;nbsp;&lt;code style=&quot;box-sizing: border-box; font-family: var(--fontStack-monospace, ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace); font-size: 13.6px; padding: 0.2em 0.4em; margin: 0px; white-space-collapse: break-spaces; background-color: var(--bgColor-neutral-muted, var(--color-neutral-muted)); border-radius: 6px;&quot;&gt;turn_off()&lt;/code&gt;,&amp;nbsp;&lt;code style=&quot;box-sizing: border-box; font-family: var(--fontStack-monospace, ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace); font-size: 13.6px; padding: 0.2em 0.4em; margin: 0px; white-space-collapse: break-spaces; background-color: var(--bgColor-neutral-muted, var(--color-neutral-muted)); border-radius: 6px;&quot;&gt;is_active()&lt;/code&gt;. Sistnevnte skal returnere&amp;nbsp;&lt;code style=&quot;box-sizing: border-box; font-family: var(--fontStack-monospace, ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace); font-size: 13.6px; padding: 0.2em 0.4em; margin: 0px; white-space-collapse: break-spaces; background-color: var(--bgColor-neutral-muted, var(--color-neutral-muted)); border-radius: 6px;&quot;&gt;True&lt;/code&gt;&amp;nbsp;hvis enheten har blitt slått på med&amp;nbsp;&lt;code style=&quot;box-sizing: border-box; font-family: var(--fontStack-monospace, ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace); font-size: 13.6px; padding: 0.2em 0.4em; margin: 0px; white-space-collapse: break-spaces; background-color: var(--bgColor-neutral-muted, var(--color-neutral-muted)); border-radius: 6px;&quot;&gt;turn_on()&lt;/code&gt;. Tar også hensyn til at visse aktuatorer kan også gis et &quot;&lt;code style=&quot;box-sizing: border-box; font-family: var(--fontStack-monospace, ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace); font-size: 13.6px; padding: 0.2em 0.4em; margin: 0px; white-space-collapse: break-spaces; background-color: var(--bgColor-neutral-muted, var(--color-neutral-muted)); border-radius: 6px;&quot;&gt;target_value&lt;/code&gt;&quot; (f.eks. panelovn eller varmepumper kan settes til en ønsket temperatur).&lt;/li&gt;&lt;/ul&gt;&lt;p style=&quot;box-sizing: border-box; margin-top: 0px; color: rgb(31, 35, 40); font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, &amp;quot;Noto Sans&amp;quot;, Helvetica, Arial, sans-serif, &amp;quot;Apple Color Emoji&amp;quot;, &amp;quot;Segoe UI Emoji&amp;quot;; font-size: 16px; text-align: start; text-wrap-mode: wrap; background-color: rgb(255, 255, 255); margin-bottom: 0px !important;&quot; dir=&quot;auto&quot;&gt;Ta gjerne en titt i&amp;nbsp;&lt;a style=&quot;box-sizing: border-box; background-color: transparent; text-underline-offset: 0.2rem;&quot; href=&quot;https://github.com/selabhvl/ing301-projectpartA-startcode/blob/main/tests/test_part_a.py&quot;&gt;testfilen&lt;/a&gt;&amp;nbsp;for å sjekke hvilke funksjoner forventes av deres domenemodell.&lt;/p&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="-414" y="530" width="1940" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="oj4y6Ip84oqnXmlfz5-U-89" value="aktuatorer:&amp;nbsp;&lt;div&gt;bulb, enkel ovn&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1110" y="-64" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="oj4y6Ip84oqnXmlfz5-U-90" value="ActuatorSetpoint" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1250" y="-140" width="160" height="196" as="geometry" />
+        </mxCell>
+        <mxCell id="oj4y6Ip84oqnXmlfz5-U-94" value="actuator_SP: float" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="oj4y6Ip84oqnXmlfz5-U-90">
+          <mxGeometry y="26" width="160" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="oj4y6Ip84oqnXmlfz5-U-95" value="actuator_unit: feks % lle C" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="oj4y6Ip84oqnXmlfz5-U-90">
+          <mxGeometry y="52" width="160" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="oj4y6Ip84oqnXmlfz5-U-92" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="oj4y6Ip84oqnXmlfz5-U-90">
+          <mxGeometry y="78" width="160" height="92" as="geometry" />
+        </mxCell>
+        <mxCell id="oj4y6Ip84oqnXmlfz5-U-97" value="+target_value():" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="oj4y6Ip84oqnXmlfz5-U-90">
+          <mxGeometry y="170" width="160" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="oj4y6Ip84oqnXmlfz5-U-98" value="aktuatorer:&amp;nbsp;&lt;div&gt;heat_pump, panelOven&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1255" y="80" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="oj4y6Ip84oqnXmlfz5-U-99" value="Kombisensorer" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="720" y="130" width="270" height="92" as="geometry" />
+        </mxCell>
+        <mxCell id="oj4y6Ip84oqnXmlfz5-U-100" value="NA" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="oj4y6Ip84oqnXmlfz5-U-99">
+          <mxGeometry y="26" width="270" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="oj4y6Ip84oqnXmlfz5-U-101" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="oj4y6Ip84oqnXmlfz5-U-99">
+          <mxGeometry y="58" width="270" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="oj4y6Ip84oqnXmlfz5-U-102" value="NA" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="oj4y6Ip84oqnXmlfz5-U-99">
+          <mxGeometry y="66" width="270" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="oj4y6Ip84oqnXmlfz5-U-103" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.482;entryY=-0.107;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="oj4y6Ip84oqnXmlfz5-U-99" target="oj4y6Ip84oqnXmlfz5-U-24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oj4y6Ip84oqnXmlfz5-U-114" value="Text" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="oj4y6Ip84oqnXmlfz5-U-103">
+          <mxGeometry x="0.4909" y="-5" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="oj4y6Ip84oqnXmlfz5-U-104" value="Feks AirQualitySensor med CO&quot; luftfuktig og VOC i samme" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="680" y="240" width="340" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="oj4y6Ip84oqnXmlfz5-U-105" value="en link per egenskap" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="860" y="85" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="oj4y6Ip84oqnXmlfz5-U-110" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="oj4y6Ip84oqnXmlfz5-U-106" target="oj4y6Ip84oqnXmlfz5-U-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oj4y6Ip84oqnXmlfz5-U-111" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="oj4y6Ip84oqnXmlfz5-U-106" target="oj4y6Ip84oqnXmlfz5-U-90">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oj4y6Ip84oqnXmlfz5-U-112" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=0;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="oj4y6Ip84oqnXmlfz5-U-106" target="oj4y6Ip84oqnXmlfz5-U-78">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oj4y6Ip84oqnXmlfz5-U-106" value="SmartSensor" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1080" y="178" width="270" height="92" as="geometry" />
+        </mxCell>
+        <mxCell id="oj4y6Ip84oqnXmlfz5-U-107" value="NA" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="oj4y6Ip84oqnXmlfz5-U-106">
+          <mxGeometry y="26" width="270" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="oj4y6Ip84oqnXmlfz5-U-108" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="oj4y6Ip84oqnXmlfz5-U-106">
+          <mxGeometry y="58" width="270" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="oj4y6Ip84oqnXmlfz5-U-109" value="NA" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="oj4y6Ip84oqnXmlfz5-U-106">
+          <mxGeometry y="66" width="270" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="oj4y6Ip84oqnXmlfz5-U-113" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.512;entryY=1.056;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="zkfFHV4jXpPFQw0GAbJ--0" target="oj4y6Ip84oqnXmlfz5-U-45">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
