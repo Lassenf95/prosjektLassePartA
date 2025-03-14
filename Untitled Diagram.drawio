@@ -5,7 +5,7 @@
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="zkfFHV4jXpPFQw0GAbJ--0" value="Device" style="swimlane;fontStyle=2;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
-          <mxGeometry x="220" y="120" width="160" height="192" as="geometry">
+          <mxGeometry x="100" y="100" width="160" height="192" as="geometry">
             <mxRectangle x="230" y="140" width="160" height="26" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
@@ -94,7 +94,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="oj4y6Ip84oqnXmlfz5-U-4" value="Sensor" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="110" y="400" width="200" height="86" as="geometry" />
+          <mxGeometry x="80" y="400" width="200" height="86" as="geometry" />
         </mxCell>
         <mxCell id="oj4y6Ip84oqnXmlfz5-U-5" value="sensor_unit: str" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="oj4y6Ip84oqnXmlfz5-U-4">
           <mxGeometry y="26" width="200" height="26" as="geometry" />
@@ -106,7 +106,7 @@
           <mxGeometry y="60" width="200" height="26" as="geometry" />
         </mxCell>
         <mxCell id="oj4y6Ip84oqnXmlfz5-U-8" value="Actuator" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="370" y="400" width="160" height="86" as="geometry" />
+          <mxGeometry x="370" y="400" width="160" height="138" as="geometry" />
         </mxCell>
         <mxCell id="oj4y6Ip84oqnXmlfz5-U-9" value="+ field: type" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="oj4y6Ip84oqnXmlfz5-U-8">
           <mxGeometry y="26" width="160" height="26" as="geometry" />
@@ -114,26 +114,32 @@
         <mxCell id="oj4y6Ip84oqnXmlfz5-U-10" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="oj4y6Ip84oqnXmlfz5-U-8">
           <mxGeometry y="52" width="160" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="oj4y6Ip84oqnXmlfz5-U-11" value="+ method(type): type" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="oj4y6Ip84oqnXmlfz5-U-8">
+        <mxCell id="oj4y6Ip84oqnXmlfz5-U-11" value="+ turn_on():&amp;nbsp;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="oj4y6Ip84oqnXmlfz5-U-8">
           <mxGeometry y="60" width="160" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="oj4y6Ip84oqnXmlfz5-U-14" value="&#39;&#39;En ny boks for hver sensor type&#39;&#39;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="100" y="640" width="210" height="86" as="geometry" />
+        <mxCell id="oj4y6Ip84oqnXmlfz5-U-25" value="+ turn_off():&amp;nbsp;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="oj4y6Ip84oqnXmlfz5-U-8">
+          <mxGeometry y="86" width="160" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="oj4y6Ip84oqnXmlfz5-U-15" value="sensor_unit, feks Celsius % osv" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="oj4y6Ip84oqnXmlfz5-U-14">
-          <mxGeometry y="26" width="210" height="26" as="geometry" />
+        <mxCell id="oj4y6Ip84oqnXmlfz5-U-26" value="+ is_active():&amp;nbsp;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="oj4y6Ip84oqnXmlfz5-U-8">
+          <mxGeometry y="112" width="160" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="oj4y6Ip84oqnXmlfz5-U-14" value="&#39;&#39;En ny boks for hver sensor type&#39;&#39;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="20" y="630" width="270" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="oj4y6Ip84oqnXmlfz5-U-15" value="sensor_unit, blir definert feks Celsius % osv" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="oj4y6Ip84oqnXmlfz5-U-14">
+          <mxGeometry y="26" width="270" height="26" as="geometry" />
         </mxCell>
         <mxCell id="oj4y6Ip84oqnXmlfz5-U-16" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="oj4y6Ip84oqnXmlfz5-U-14">
-          <mxGeometry y="52" width="210" height="8" as="geometry" />
+          <mxGeometry y="52" width="270" height="8" as="geometry" />
         </mxCell>
         <mxCell id="oj4y6Ip84oqnXmlfz5-U-18" value="+ random tall for å simulere måling" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="oj4y6Ip84oqnXmlfz5-U-14">
-          <mxGeometry y="60" width="210" height="26" as="geometry" />
+          <mxGeometry y="60" width="270" height="26" as="geometry" />
         </mxCell>
         <mxCell id="oj4y6Ip84oqnXmlfz5-U-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.51;entryY=1.038;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="oj4y6Ip84oqnXmlfz5-U-14" target="oj4y6Ip84oqnXmlfz5-U-7">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="oj4y6Ip84oqnXmlfz5-U-20" value="&#39;&#39;En ny boks for hver sensor type&#39;&#39;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="440" y="630" width="210" height="86" as="geometry" />
+        <mxCell id="oj4y6Ip84oqnXmlfz5-U-20" value="&#39;&#39;En ny boks for hvere&#39;&#39;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="380" y="630" width="210" height="86" as="geometry" />
         </mxCell>
         <mxCell id="oj4y6Ip84oqnXmlfz5-U-21" value="sensor_unit, feks Celsius % osv" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="oj4y6Ip84oqnXmlfz5-U-20">
           <mxGeometry y="26" width="210" height="26" as="geometry" />
@@ -145,7 +151,7 @@
           <mxGeometry y="60" width="210" height="26" as="geometry" />
         </mxCell>
         <mxCell id="oj4y6Ip84oqnXmlfz5-U-24" value="TempSensor, HumidSensor, CO2Sensor, PowerSensor" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="20" y="740" width="320" height="30" as="geometry" />
+          <mxGeometry y="730" width="320" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
