@@ -10,7 +10,7 @@ class Measurement:
         self.value = value
         self.unit = unit
 
-class Devices():
+class Devices:
     def __init__(self, id: str, supplier: str, model_name: str):
         self.id= id
         self.supplier= supplier
@@ -26,13 +26,12 @@ class Devices():
         return self.__class__.__name__
         
 #sensorer og aktuatorer er sub-klasser av ''devices''' og arver egenskapene fra devices. I tilegg bruker super(). for å egge til attributes
-
 class Sensor(Devices): #base klasse for alle sensorer
     def __init__(self, id: str, supplier: str, model_name: str, sensor_unit: str):
         super().__init__(id,supplier,model_name)
         self.sensor_unit = sensor_unit
         
-        self.last_measurement = None #første omgang helt udefinert, dvs none helt til noe annet er definert
+        self._last_measurement = None #første omgang helt udefinert, dvs none helt til noe annet er definert
     def last_measurement(self):
         raise NotImplementedError("Subclasses must implement last_measurement") # todo fikse dette her 
 
@@ -40,24 +39,35 @@ class TempSensor(Sensor):
     def __init__(self, id: str, supplier: str, model_name: str):
         super().__init__(id, supplier, model_name, "°C")  #skriver enhet direkte inn der ''sensor_unit'' står. kunne evt definert denne  slik som i linje 32
         
-    def last_measurement(self):
+    def get_last_measurement(self):
         value = round(random.uniform(-10, 50), 1)  # tilfeldig verdi mellom -10 and 50grader
         timestamp = datetime.now().isoformat()
         return Measurement(timestamp, value, self.sensor_unit)
+    
+class motion_sensor(Sensor):
+    def __init__(self, id: str, supplier: str, model_name: str):
+        super().__init__(id, supplier, model_name, "Bevegelse")  
+
+    def get_last_measurement(self):
+        value = random.choice([True, False])  # Tilfeldig True eller False
+        timestamp = datetime.now().isoformat()
+        measurement_value = "Bevegelse" if value else "Ingen bevegelse"
+        return Measurement(timestamp, measurement_value, self.sensor_unit)
+    
 class HumidSensor(Sensor):
     def __init__(self, id: str, supplier: str, model_name: str):
         super().__init__(id, supplier, model_name, "%RH")  
         
-    def last_measurement(self):
+    def get_last_measurement(self):
         value = round(random.uniform(0, 100), 1)  # tilfeldig verdi mellom 0 til 100% RH luftfuktighet
         timestamp = datetime.now().isoformat()
         return Measurement(timestamp, value, self.sensor_unit)
     
 class CO2Sensor(Sensor):
     def __init__(self, id: str, supplier: str, model_name: str):
-        super().__init__(id, supplier, model_name, "%ppm")  
+        super().__init__(id, supplier, model_name, "ppm")  
         
-    def last_measurement(self):
+    def get_last_measurement(self):
         value = round(random.uniform(0, 2000), 1)  # tilfeldig verdi mellom 0 til  2000 ppm co2 i lufta
         timestamp = datetime.now().isoformat()
         return Measurement(timestamp, value, self.sensor_unit)
@@ -65,16 +75,15 @@ class PowerSensor(Sensor):
     def __init__(self, id: str, supplier: str, model_name: str):
         super().__init__(id, supplier, model_name, "kw")  
         
-    def last_measurement(self):
+    def get_last_measurement(self):
         value = round(random.uniform(0, 3680), 1)  # tilfeldig verdi mellom 0 til 3680W i forbruk(utgangspunkt i bolig 16A*230V = 3680)
         timestamp = datetime.now().isoformat()
         return Measurement(timestamp, value, self.sensor_unit)
     
 class Actuator(Devices):
-    def __init__(self, id: str, supplier: str, model_name: str), state:
+    def __init__(self, id: str, supplier: str, model_name: str, state: bool):
         super().__init__(id, supplier, model_name)
-        self.state = False
-        self.target_value = None
+        self.state = False #default til av før noe annet er nevnt
     
     def turn_on(self):
         self.state = True
@@ -86,45 +95,36 @@ class Actuator(Devices):
         return self.state
     
 class HeatPump(Actuator):
-    """Heat pump actuator with adjustable set point."""
-    def __init__(self, id: str, supplier: str, model_name: str, set_point: float = 20.0):
-        super().__init__(id, supplier, model_name)
+    def __init__(self, id: str, supplier: str, model_name: str, state:bool, set_point: float = 20.0): #varmepumpe med variabelt set punkt
+        super().__init__(id, supplier, model_name, state)
         self.set_point = set_point
 
-    def set_temperature(self, value: float):
+    def target_value(self, value: float): #dersom bruker ønkser å endre set punktet skrives nytt setpunkt inn
         self.set_point = value
+
+
+class Bulp(Actuator):
+    #av eller på eller slå på
+    def __init__(self, id: str, supplier: str, model_name: str):
+        super().__init__(id, supplier, model_name)
 
 class Furnace(Actuator):
     """Simple furnace actuator that can be turned on or off."""
     def __init__(self, id: str, supplier: str, model_name: str):
         super().__init__(id, supplier, model_name)
     
-#Typer av sensorer(klasser som arver fra sensor):    
-    
-
-# class HumiditySensor(Sensor):
-#     pass
-
-# class TempSensor(Sensor):
-#     pass
-
-# class MotionSensor(Sensor):
-#     pass
-
-# class PowerSensor(Sensor):
-#     pass
-
-#Aktuatorer
 
 
 
 
-
-
+# class Floors(SmartHouse):
+    # pass
+# class Room(Floors):
+    # pass
 
 
 class SmartHouse:
-    """
+    """0
     This class serves as the main entity and entry point for the SmartHouse system app.
     Do not delete this class nor its predefined methods since other parts of the
     application may depend on it (you are free to add as many new methods as you like, though).
@@ -132,19 +132,34 @@ class SmartHouse:
     The SmartHouse class provides functionality to register rooms and floors (i.e. changing the 
     house's physical layout) as well as register and modify smart devices and their state.
     """
+    def __init__(self): #CHATGPT SLETT
+        self.floors = {}
+        self.rooms = {}
+        self.devices = {}
 
     def register_floor(self, level):
         """
         This method registers a new floor at the given level in the house
         and returns the respective floor object.
         """
+        #CHATgpt slett
+        if level in self.floors:
+            raise ValueError("Floor already exists")
+        self.floors[level] = []
+        return self.floors[level]
 
     def register_room(self, floor, room_size, room_name = None):
         """
         This methods registers a new room with the given room areal size 
         at the given floor. Optionally the room may be assigned a mnemonic name.
         """
-        pass
+        #chat gpt slett
+        if floor not in self.floors:
+            raise ValueError("Floor does not exist")
+        room_id = room_name if room_name else f"Room_{len(self.rooms) + 1}"
+        self.rooms[room_id] = {"size": room_size, "devices": []}
+        self.floors[floor].append(room_id)
+        return room_id
 
 
     def get_floors(self):
@@ -154,7 +169,7 @@ class SmartHouse:
         registered a basement (level=0), a ground floor (level=1) and a first floor 
         (leve=1), then the resulting list contains these three flors in the above order.
         """
-        pass
+        return sorted(self.floors.keys()) # CHATGPT SLETT
 
 
     def get_rooms(self):
@@ -162,25 +177,30 @@ class SmartHouse:
         This methods returns the list of all registered rooms in the house.
         The resulting list has no particular order.
         """
-        pass
+        return list(self.rooms.keys()) #CHATGPT SLETT
 
 
     def get_area(self):
         """
         This methods return the total area size of the house, i.e. the sum of the area sizes of each room in the house.
         """
-
+        return sum(room["size"] for room in self.rooms.values()) #CHATGPT SLETT
 
     def register_device(self, room, device):
         """
         This methods registers a given device in a given room.
         """
-        pass
+        #CHATGPT SLETTT
+        if room not in self.rooms:
+            raise ValueError("Room does not exist")
+        self.rooms[room]["devices"].append(device.id)
+        self.devices[device.id] = device
 
     
     def get_device(self, device_id):
         """
         This method retrieves a device object via its id.
         """
-        pass
+        return self.devices.get(device_id, None) #CHATGPT SLETT
+    
 

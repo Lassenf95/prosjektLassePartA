@@ -1,4 +1,7 @@
 from unittest import TestCase, main
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from smarthouse.domain import SmartHouse
 from demo_house import DEMO_HOUSE as h
 
