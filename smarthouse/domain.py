@@ -20,15 +20,24 @@ class Measurement:
 
 class Device: #hvert rom inneholder devicer deifnert under Room. Device er superklasse for både sensorer og aktuatorer
     def __init__(self, id: str, supplier: str, model_name: str, device_name: str):
+        self.room = None   #ved opprettelse av devier så må rom attributtene tildeles senere når devicen blir plassert
         self.id= id
         self.supplier= supplier
         self.model_name= model_name
         self.device_name = device_name #lånt fra LF istedenfor å ha en ny klasse for hver eneste type av sensorer..
-        self.room = None  # Add this line to initialize the room attribute 
+        #self.room = None  # Add this line to initialize the room attribute 
      #Lånt det under fra fasit TODO FJERNE      
    
     def get_device_type(self) -> str:
         return self.device_name
+    
+    
+    def is_actuator(self) -> bool:
+        return False
+
+    def is_sensor(self) -> bool:
+        return False
+    
     #     return True 
     
     # def is_actuator(self) -> bool:
@@ -55,7 +64,7 @@ class Sensor(Device): #sensorer is-a device. Arver
     def is_actuator(self):
         return False
     
-    def get_last_measurement(self):
+    def last_measurement(self):
         value = round(random.uniform(0, 100), 1)  # tilfeldig verdi mellom 0 til 100
         timestamp = datetime.now().isoformat()
         return Measurement(timestamp, value, self.sensor_unit)
@@ -94,17 +103,29 @@ class Actuator(Device): #Actuator er en device. Arver(is a)
 #     # TODO lånt fra løsningsforslag 
 #   
 # 
-# 
-class MIXActuatorSensor(Device):
-    def __init__(self, id: str, supplier: str, model_name: str, device_name: str, sensor_unit: str):
-        super().__init__(id, supplier, model_name, device_name)
+class MIXActuatorSensor(Actuator, Sensor):
+    def __init__(self, id: str, supplier: str, model_name: str, device_name: str,sensor_unit: str): 
+        super().__init__(id, supplier, model_name,device_name)
         self.sensor_unit = sensor_unit
-        self.state = False
+        self.state = False  # default til av før noe annet er nevnt
+        
+    #def __init__(self, id: str, supplier: str, model_name: str, device_name: str, sensor_unit: str):
+     #   Actuator.__init__(self, id, supplier, model_name, device_name)
+      #  Sensor.__init__(self, id, supplier, model_name, device_name,sensor_unit=sensor_unit)
+       # self.state = False  # Sikrer at aktuator-delen starter i AV-tilstand
+        #self.sensor_unit = sensor_unit
+       
     def is_actuator(self) -> bool:
         return True
 
     def is_sensor(self) -> bool:
         return True
+    
+    def turn_on(self, target_value: Optional[float] = None):
+       if target_value:
+           self.state = target_value
+       else:
+           self.state = True
 
 
 
@@ -199,11 +220,11 @@ class SmartHouse:
         """
         This methods registers a given device in a given room.
         """ 
-        #under demo_house.py er allerede enhetene laget, så her skal vi bare legge til enhetene i rommene
-        device.room = room #setter rommet til enheten
+        #under demo_house.py er allerede enhetene laget, så her skal vi bare legge til enhetene i rommenes liste over enheter
         room.devices.append(device) #legger til en device i rommet
-        return device
-        
+        #device.roomName = room.name #tilordner rommet attributtene til rom enheten7
+        device.room = room
+        return device 
     
     def get_devices(self):
         """

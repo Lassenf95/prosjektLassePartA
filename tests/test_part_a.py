@@ -37,7 +37,7 @@ class TestPartA(TestCase):
     def test_intermediate_device_attributes(self):
         motion_sensor = h.get_device_by_id("cd5be4e8-0e6b-4cb5-a21f-819d06cf5fc5")
         self.assertEqual(motion_sensor.id, "cd5be4e8-0e6b-4cb5-a21f-819d06cf5fc5")
-        self.assertEqual(motion_sensor.device_name, "bevegelsensor") #LAFO endret fra device_type til device_name. OG endret Motion Sensor til bevegelses-sensor
+        self.assertEqual(motion_sensor.device_name, "bevegelses-sensor") #LAFO endret fra device_type til device_name. OG endret Motion Sensor til bevegelses-sensor
         self.assertEqual(motion_sensor.supplier, "NebulaGuard Innovations")
         self.assertEqual(motion_sensor.model_name, "MoveZ Detect 69")
         self.assertTrue(motion_sensor.is_sensor())
@@ -50,30 +50,32 @@ class TestPartA(TestCase):
         self.assertTrue(bulp.is_actuator())
         self.assertFalse(bulp.is_sensor())
         # also they know about their room and rooms know about their devices
-        living_room = motion_sensor.room
+        living_room = motion_sensor.room 
         self.assertTrue(motion_sensor in living_room.devices)
         self.assertEqual(len(living_room.devices), 3)
-
+        
+        
+        
     # def test_intermediate_sensor_measurements(self):
-    #     temp = h.get_device_by_id("4d8b1d62-7921-4917-9b70-bbd31f6e2e8e")
-    #     m = temp.last_measurement()
-    #     # Measurements are recorded in celsius and values a floating point numbers
-    #     self.assertEqual(m.unit, "°C")
-    #     self.assertEqual(type(m.value), type(0.0))
+        temp = h.get_device_by_id("4d8b1d62-7921-4917-9b70-bbd31f6e2e8e")
+        m = temp.last_measurement()
+        # Measurements are recorded in celsius and values a floating point numbers
+        self.assertEqual(m.unit, "°C")
+        self.assertEqual(type(m.value), type(0.0))
 
     # def test_intermediate_actuator_state_change(self):
-    #     # actuators can be turned on and off
-    #     bulp = h.get_device_by_id("6b1c5f6b-37f6-4e3d-9145-1cfbe2f1fc28")
-    #     bulp.turn_on()
-    #     self.assertTrue(bulp.is_active())
-    #     bulp.turn_off()
-    #     self.assertFalse(bulp.is_active())
-    #     # some actuators can receive extra information
-    #     heat_pump = h.get_device_by_id("5e13cabc-5c58-4bb3-82a2-3039e4480a6d")
-    #     heat_pump.turn_on(21.3)
-    #     self.assertTrue(heat_pump.is_active())
-    #     heat_pump.turn_off()
-    #     self.assertFalse(heat_pump.is_active())
+        # # actuators can be turned on and off
+        # bulp = h.get_device_by_id("6b1c5f6b-37f6-4e3d-9145-1cfbe2f1fc28")
+        # bulp.turn_on()
+        # self.assertTrue(bulp.is_active())
+        # bulp.turn_off()
+        # self.assertFalse(bulp.is_active())
+        # some actuators can receive extra information
+        # heat_pump = h.get_device_by_id("5e13cabc-5c58-4bb3-82a2-3039e4480a6d")
+        # heat_pump.turn_on(21.3)
+        # self.assertTrue(heat_pump.is_active())
+        # heat_pump.turn_off()
+        # self.assertFalse(heat_pump.is_active())
 
 
     # # Level 3 Advanced: Registering the same device in another room, moves it from one room to another 
