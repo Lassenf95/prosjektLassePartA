@@ -23,22 +23,37 @@ class Device: #hvert rom inneholder devicer deifnert under Room. Device er super
         self.id= id
         self.supplier= supplier
         self.model_name= model_name
-        self.device_name = device_name #lånt fra LF istedenfor å ha en ny klasse for hver eneste type av sensorer.. 
+        self.device_name = device_name #lånt fra LF istedenfor å ha en ny klasse for hver eneste type av sensorer..
+        self.room = None  # Add this line to initialize the room attribute 
      #Lånt det under fra fasit TODO FJERNE      
-    def is_sensor(self) -> bool:
-        return True 
+   
+    def get_device_type(self) -> str:
+        return self.device_name
+    #     return True 
     
-    def is_actuator(self) -> bool:
-        return False
+    # def is_actuator(self) -> bool:
+    #     return False
     
-    def last_measurement(self) -> Measurement:
-        return Measurement(datetime.now().isoformat(), random() * 10, self.unit)
+    # def last_measurement(self) -> Measurement:
+    #     return Measurement(datetime.now().isoformat(), random() * 10, self.unit)
+    # @abstractmethod
+    # def is_actuator(self) -> bool:
+    #     pass
+
+    # @abstractmethod
+    # def is_sensor(self) -> bool:
+    #     pass
 
 class Sensor(Device): #sensorer is-a device. Arver
     def __init__(self, id: str, supplier: str, model_name: str, device_name:str,  sensor_unit: str):
         super().__init__(id, supplier, model_name,device_name) 
         self.sensor_unit = sensor_unit  #her defineres målenehten til sensoren.
 
+    def is_sensor(self):
+        return True
+    
+    def is_actuator(self):
+        return False
     
     def get_last_measurement(self):
         value = round(random.uniform(0, 100), 1)  # tilfeldig verdi mellom 0 til 100
@@ -180,42 +195,44 @@ class SmartHouse:
         return sum(room.size for floor in self.floors for room in floor.rooms)
 
 
-    # def register_device(self, room: Room, device: Device):
-    #     """
-    #     This methods registers a given device in a given room.
-    #     """ 
-    #     #under demo_house.py er allerede enhetene laget, så her skal vi bare legge til enhetene i rommene
-    #     room.devices.append(device) #legger til en device i rommet
+    def register_device(self, room: Room, device: Device):
+        """
+        This methods registers a given device in a given room.
+        """ 
+        #under demo_house.py er allerede enhetene laget, så her skal vi bare legge til enhetene i rommene
+        device.room = room #setter rommet til enheten
+        room.devices.append(device) #legger til en device i rommet
+        return device
         
     
-    # def get_devices(self):
-    #     """
-    #     This method retrieves a list for all devices in the house.
-    #     """
-    #     # listeAvEnhter:  list[Device] = []
-    #     # for floor in self.floors: #for hver etasje i huset
-    #     #     for room in floor.rooms: #for hvert rom i etasjen
-    #     #         for device in room.devices: #for hver enhet i rommet
-    #     #             listeAvEnhter.append(device) #legger til enheten i listen over enheter       
-    #     # return listeAvEnhter #returner så til slutt listen av alle enehtene
+    def get_devices(self):
+        """
+        This method retrieves a list for all devices in the house.
+        """
+        # listeAvEnhter:  list[Device] = []
+        # for floor in self.floors: #for hver etasje i huset
+        #     for room in floor.rooms: #for hvert rom i etasjen
+        #         for device in room.devices: #for hver enhet i rommet
+        #             listeAvEnhter.append(device) #legger til enheten i listen over enheter       
+        # return listeAvEnhter #returner så til slutt listen av alle enehtene
     
-    #     devices = []
-    #     for floor in self.floors:
-    #         for room in floor.rooms:
-    #             devices.extend(room.devices)
-    #     return devices
+        devices = []
+        for floor in self.floors:
+            for room in floor.rooms:
+                devices.extend(room.devices)
+        return devices
 
  
-    # def get_device_by_id(self, device_id: str):
-    #     """
-    #     This method retrieves a device object via its id.
-    #     """
-    #     targetID = device_id #dette er iden jeg søker etter
-    #     for floor in self.floors:   #for alle etasjer skal jeg søke i...
-    #         for room in floor.rooms: #alle rommene i den gitte etasajse
-    #             for device in room.devices: #etter alle enhetene i det gitte rommet
-    #                 if device.id == targetID: #her til det matcher
-    #                     return device #returner enheten dersom det eksiterer en match
-    #     return None #dersom ingen match oppstår kjører koden her og returner ingenting...         
+    def get_device_by_id(self, device_id: str):
+        """
+        This method retrieves a device object via its id.
+        """
+        targetID = device_id #dette er iden jeg søker etter
+        for floor in self.floors:   #for alle etasjer skal jeg søke i...
+            for room in floor.rooms: #alle rommene i den gitte etasajse
+                for device in room.devices: #etter alle enhetene i det gitte rommet
+                    if device.id == targetID: #her til det matcher
+                        return device #returner enheten dersom det eksiterer en match
+        return None #dersom ingen match oppstår kjører koden her og returner ingenting...         
             
     
