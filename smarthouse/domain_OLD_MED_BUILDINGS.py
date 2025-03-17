@@ -2,22 +2,31 @@ from __future__ import annotations #slik at rekkefølge av koden ikke har noe å
 import random
 from datetime import datetime
 from typing import List, Optional, Union 
-from abc import abstractmethod
 
 class Measurement:
     """
     This class represents a measurement taken from a sensor.
     """
-
     def __init__(self, timestamp, value, unit):
         self.timestamp = timestamp
         self.value = value
         self.unit = unit
 
-
-
-# TODO: Add your own classes here!
-
+class Building:
+    def __init__(self, address: str):
+        self.address= address
+        self.floors: List[Floor] = [] # Assosiasjon. Bynigng has-a floor       
+class Floor: #hver bygning inneholder etasjer
+    def __init__(self, level: int):
+        self.level = level
+        self.rooms: List[Room] = [] #Assosiasjon. Etasje has a room.
+class Room: #hver etasje inneholder rom/flere room definert under Floor
+    def __init__(self, floor: Floor, size: float, name=None):
+        self.floor: Floor = floor
+        self.size: float = size
+        self.name: str = name
+        self.devices: List[Device] = [] #assosiasjon. Room has a device.     
+           
 class Device: #hvert rom inneholder devicer deifnert under Room. Device er superklasse for både sensorer og aktuatorer
     def __init__(self, id: str, supplier: str, model_name: str, device_name: str):
         self.id= id
@@ -69,8 +78,8 @@ class Actuator(Device): #Actuator er en device. Arver(is a)
 
     def is_active(self) -> bool:
         return self.state is not False
-    
-    # c#lass CombiActuatorSensor(Actuator, Sensor):
+
+# c#lass CombiActuatorSensor(Actuator, Sensor):
 #     def __init__(self, id: str, supplier: str, model_name: str, device_name: str, sensor_unit: str):
 #         Actuator.__init__(self, id, supplier, model_name, device_name)
 #         Sensor.__init__(self, id, supplier, model_name, device_name, sensor_unit)
@@ -92,23 +101,6 @@ class MIXActuatorSensor(Device):
         return True
 
 
-
-
-# class Building:
-#     def __init__(self, address: str):
-#         self.address= address
-#         self.floors: List[Floor] = [] # Assosiasjon. Bynigng has-a floor       
-class Floor: #hver bygning inneholder etasjer
-    def __init__(self, level: int):
-        self.level = level
-        self.rooms: List[Room] = [] #Assosiasjon. Etasje has a room.
-class Room: #hver etasje inneholder rom/flere room definert under Floor
-    def __init__(self, floor: Floor, size: float, name=None):
-        self.floor: Floor = floor
-        self.size: float = size
-        self.name: str = name
-        self.devices: List[Device] = [] #assosiasjon. Room has a device.     
-
 class SmartHouse:
     """
     This class serves as the main entity and entry point for the SmartHouse system app.
@@ -117,105 +109,91 @@ class SmartHouse:
 
     The SmartHouse class provides functionality to register rooms and floors (i.e. changing the 
     house's physical layout) as well as register and modify smart devices and their state.
-    """
-
-#  #egenskaper/attributer ved enhvert smarthus
-#     def __init__(self):
-#         self.buildings: List[Building] = [] #ethvert instans av smarthus er en bygning
-
-#     def register_building(self, address: str):
-#         new_buidling = Building(address)
-#         self.buildings.append(new_buidling)
-#         return new_buidling
-    
+    """    
+    #egenskaper/attributer ved enhvert smarthus
     def __init__(self):
-        self.floors: list[Floor] = [] #for hver instans av et hus/bygning så har vi etasje(r)
+        self.buildings: List[Building] = [] #ethvert instans av smarthus er en bygning
 
-    
-
-    def register_floor(self, level):
+    def register_building(self, address: str):
+        new_buidling = Building(address)
+        self.buildings.append(new_buidling)
+        return new_buidling       
+        
+    def register_floor(self, building: Building, level:int):
         """
         This method registers a new floor at the given level in the house
         and returns the respective floor object.
         """
-        new_floor = Floor(level) #skaper en etasje
-        self.floors.append(new_floor) #registrerer en ny etasje med det gitte nivået
+        #tanken er her at et nytt floor lages, når en ny etasje lages, så skal også det lages en ny tilhørende liste av rom til denne etasjen
+        new_floor = Floor(level) #skaper en ny etasje
+        building.floors.append(new_floor) #legger til en ny etasje i bygningen
         return new_floor
 
-    def register_room(self, floor, room_size, room_name = None):
+    def register_room(self, floor: Floor, room_size, room_name):
         """
         This methods registers a new room with the given room areal size 
         at the given floor. Optionally the room may be assigned a mnemonic name.
         """
-        new_room = Room(floor, room_size, room_name) #skaper et nytt rom
-        floor.rooms.append(new_room) #registrerer et nytt rom i etasjen sin egen liste over rom
+        new_room = Room(floor, room_size, room_name)
+        floor.rooms.append(new_room) #legger til det nye rommet i etasjen sin egen liste over rom
         return new_room
+        #et nytt rom er dannet, og det må plasseres i listen av rom, for den gitte etasje
+        #self.rooms.append(newRoom)
+        
 
 
-    def get_floors(self):
+    def get_floors(self, building: Building):
         """
         This method returns the list of registered floors in the house.
         The list is ordered by the floor levels, e.g. if the house has 
         registered a basement (level=0), a ground floor (level=1) and a first floor 
         (leve=1), then the resulting list contains these three flors in the above order.
         """
-        return sorted(self.floors, key=lambda f: f.level)
+        return sorted(building.floors, key=lambda f: f.level)
 
 
-    def get_rooms(self):
+
+    def get_rooms(self, building: Building):
         """
         This methods returns the list of all registered rooms in the house.
         The resulting list has no particular order.
         """
         rooms = []
-        for floor in self.floors:
-            rooms.extend(floor.rooms)
+        for floor in building.floors:
+            rooms.extend(floor.rooms)  # Samler alle rom fra hver etasje
         return rooms
 
 
-    def get_area(self):
+    def get_area(self, building: Building):
         """
         This methods return the total area size of the house, i.e. the sum of the area sizes of each room in the house.
         """
-        return sum(room.size for floor in self.floors for room in floor.rooms)
+        return sum(room.size for floor in building.floors for room in floor.rooms)
 
 
-    # def register_device(self, room: Room, device: Device):
-    #     """
-    #     This methods registers a given device in a given room.
-    #     """ 
-    #     #under demo_house.py er allerede enhetene laget, så her skal vi bare legge til enhetene i rommene
-    #     room.devices.append(device) #legger til en device i rommet
+    def register_device(self, room: Room, device: Device):
+        """
+        This methods registers a given device in a given room. 
+        """
+        #USIKKER PÅ OM DET HER ER MENT AT ENHTEN ALLEREDE EKSITERER, MEN IKKE ER PLASSSER
+        #koden under registrerer en eksistrende enhet i et eksiterende rom
+        room.devices.append(device) #legger enhete i det eksistrerende rommet
+       
+    def get_devices(self, building: Building):
+        """
+        This method retrieves a list of all devices 
+        """
+        devices= []
+        for floor in building.floors: #for det aktuelle bygget er det flere etasjer
+            for room in floor.rooms: #for hver etasje er det flere rom
+                devices.extend(room.devices)                   
+        return devices
         
-    
-    # def get_devices(self):
-    #     """
-    #     This method retrieves a list for all devices in the house.
-    #     """
-    #     # listeAvEnhter:  list[Device] = []
-    #     # for floor in self.floors: #for hver etasje i huset
-    #     #     for room in floor.rooms: #for hvert rom i etasjen
-    #     #         for device in room.devices: #for hver enhet i rommet
-    #     #             listeAvEnhter.append(device) #legger til enheten i listen over enheter       
-    #     # return listeAvEnhter #returner så til slutt listen av alle enehtene
-    
-    #     devices = []
-    #     for floor in self.floors:
-    #         for room in floor.rooms:
-    #             devices.extend(room.devices)
-    #     return devices
-
- 
-    # def get_device_by_id(self, device_id: str):
-    #     """
-    #     This method retrieves a device object via its id.
-    #     """
-    #     targetID = device_id #dette er iden jeg søker etter
-    #     for floor in self.floors:   #for alle etasjer skal jeg søke i...
-    #         for room in floor.rooms: #alle rommene i den gitte etasajse
-    #             for device in room.devices: #etter alle enhetene i det gitte rommet
-    #                 if device.id == targetID: #her til det matcher
-    #                     return device #returner enheten dersom det eksiterer en match
-    #     return None #dersom ingen match oppstår kjører koden her og returner ingenting...         
-            
-    
+    def get_devices_by_id(self, building: Building, device_id):
+      
+        for floor in building.floors: #for det aktuelle bygget er det flere etasjer
+            for room in floor.rooms: #for hver etasje er det flere rom
+                for device in room.devices: # for hvert rom kan det være flere ID
+                    if device.id == device_id: 
+                        return device
+        return None #ingenting dersom ingen devicer mathcher
