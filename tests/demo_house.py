@@ -17,7 +17,7 @@ second_floor = DEMO_HOUSE.register_floor(2)
 entrance = DEMO_HOUSE.register_room(ground_floor, 13.5, "Entrance")
 bathroom1 = DEMO_HOUSE.register_room(ground_floor, 6.3, "Bathroom1")
 guestroom1 = DEMO_HOUSE.register_room(ground_floor, 8, "GuestRoom1")
-livingroom = DEMO_HOUSE.register_room(ground_floor, 39.75, "livingroomKitchen")
+living_room = DEMO_HOUSE.register_room(ground_floor, 39.75, "living_room")
 garage = DEMO_HOUSE.register_room(ground_floor, 19, "garage")
 
 #rommene i andre etasje registreres
@@ -41,8 +41,11 @@ air_quality_sensor = Sensor("7c6e35e1-2d8b-4d81-a586-5d01a03bb02c", "CelestialSe
 
 # Actuators
 smart_lock = Actuator(id="4d5f1ac6-906a-4fd1-b4bf-3a0671e4c4f1", supplier="MythicalTech", model_name="Guardian Lock 7000", device_name='smart lock')
+#TODO fikse denne når kombiactogsen klassen er fikset til å takle arv fra både semspr gp actuator og sensor
+#heat_pump = MIXActuatorSensor(id="5e13cabc-5c58-4bb3-82a2-3039e4480a6d", supplier="ElysianTech", model_name="Thermo Smart 6000", device_name='varmepumpe', sensor_unit='°C')
 heat_pump = MIXActuatorSensor(id="5e13cabc-5c58-4bb3-82a2-3039e4480a6d", supplier="ElysianTech", model_name="Thermo Smart 6000", device_name='varmepumpe', sensor_unit='°C')
-smart_oven = Actuator(id="c1e8fa9c-4b8d-487a-a1a5-2b148ee9d2d1", supplier="AetherCorp", model_name="Pheonix HEAT 333", device_name='smartOvn')
+smart_ovenLvl1 = Actuator(id="8d4e4c98-21a9-4d1e-bf18-523285ad90f6", supplier="AetherCorp", model_name="Pheonix HEAT 333", device_name='smartOvn')
+smart_ovenLvl2 = Actuator(id="c1e8fa9c-4b8d-487a-a1a5-2b148ee9d2d1", supplier="IgnicTech Solutions", model_name="Ember HEAT 3000", device_name='smartOvn2etg')
 automatic_garage_door = Actuator(id="9a54c1ec-0cb5-45a7-b20d-2a7349f1b132", supplier="MythicalTech", model_name="Guardian Lock 9000", device_name='garasjedor')
 smart_plug = Actuator(id="1a66c3d6-22b2-446e-bf5c-eb5b9d1a8c79", supplier="MysticEnergy Innovations", model_name="FlowState X", device_name='smart plug')
 dehumidifier = Actuator(id="9e5b8274-4e77-4e4e-80d2-b40d648ea02a", supplier="ArcaneTech Solutions", model_name="Hydra Dry 8000", device_name='avfukter')
@@ -50,13 +53,13 @@ light_bulb = Actuator(id="6b1c5f6b-37f6-4e3d-9145-1cfbe2f1fc28", supplier="Elysi
 
 # Register devices in rooms
 DEMO_HOUSE.register_device(garage, automatic_garage_door)
-DEMO_HOUSE.register_device(guestroom1, smart_oven)
+DEMO_HOUSE.register_device(guestroom1, smart_ovenLvl1)
 DEMO_HOUSE.register_device(bathroom1, humidity_sensor)
 DEMO_HOUSE.register_device(entrance, smart_lock)
 DEMO_HOUSE.register_device(entrance, electricity_meter)
-DEMO_HOUSE.register_device(livingroom, heat_pump)
-DEMO_HOUSE.register_device(livingroom, motion_sensor)
-DEMO_HOUSE.register_device(livingroom, CO2_sensor)
+DEMO_HOUSE.register_device(living_room, heat_pump)
+DEMO_HOUSE.register_device(living_room, motion_sensor)
+DEMO_HOUSE.register_device(living_room, CO2_sensor)
 
 # Register devices in second floor rooms
 DEMO_HOUSE.register_device(guestroom2, light_bulb)
@@ -64,5 +67,5 @@ DEMO_HOUSE.register_device(bathroom2, dehumidifier)
 DEMO_HOUSE.register_device(office, smart_plug)
 DEMO_HOUSE.register_device(guestroom3, air_quality_sensor)
 DEMO_HOUSE.register_device(masterbedroom, temperature_sensor)
-DEMO_HOUSE.register_device(masterbedroom, smart_oven)
+DEMO_HOUSE.register_device(masterbedroom, smart_ovenLvl2)
 

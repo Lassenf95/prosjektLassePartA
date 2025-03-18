@@ -20,7 +20,7 @@ class Measurement:
 
 class Device: #hvert rom inneholder devicer deifnert under Room. Device er superklasse for både sensorer og aktuatorer
     def __init__(self, id: str, supplier: str, model_name: str, device_name: str):
-        self.room = None   #ved opprettelse av devier så må rom attributtene tildeles senere når devicen blir plassert
+        self.room_name = None   #ved opprettelse av devier så må rom attributtene tildeles senere når devicen blir plassert
         self.id= id
         self.supplier= supplier
         self.model_name= model_name
@@ -74,7 +74,7 @@ class Actuator(Device): #Actuator er en device. Arver(is a)
     def __init__(self, id: str, supplier: str, model_name: str, device_name: str):
         super().__init__(id,supplier,model_name, device_name)
         self.state = False #default til av før noe annet er nevnt
-    
+        self.sensor_unit= None #
     #Lånt det under fra fasit TODO FJERNE     
     def is_actuator(self) -> bool:
         return True
@@ -103,18 +103,15 @@ class Actuator(Device): #Actuator er en device. Arver(is a)
 #     # TODO lånt fra løsningsforslag 
 #   
 # 
-class MIXActuatorSensor(Actuator, Sensor):
-    def __init__(self, id: str, supplier: str, model_name: str, device_name: str,sensor_unit: str): 
-        super().__init__(id, supplier, model_name,device_name)
+
+class MIXActuatorSensor(Device) : #Actuator, Sensor): TODO fikse denne med arv...
+    def __init__(self, id: str, supplier: str, model_name: str, device_name: str, sensor_unit: str):
+        #Actuator.__init__(self, id, supplier, model_name, device_name)
+        #Sensor.__init__(self, id, supplier, model_name, device_name, sensor_unit)
+        super().__init__(id, supplier, model_name, device_name)
         self.sensor_unit = sensor_unit
         self.state = False  # default til av før noe annet er nevnt
-        
-    #def __init__(self, id: str, supplier: str, model_name: str, device_name: str, sensor_unit: str):
-     #   Actuator.__init__(self, id, supplier, model_name, device_name)
-      #  Sensor.__init__(self, id, supplier, model_name, device_name,sensor_unit=sensor_unit)
-       # self.state = False  # Sikrer at aktuator-delen starter i AV-tilstand
-        #self.sensor_unit = sensor_unit
-       
+
     def is_actuator(self) -> bool:
         return True
 
@@ -126,8 +123,12 @@ class MIXActuatorSensor(Actuator, Sensor):
            self.state = target_value
        else:
            self.state = True
-
-
+           
+    def turn_off(self):
+        self.state = False 
+    
+    def is_active(self) -> bool:
+        return self.state is not False
 
 
 # class Building:
@@ -139,10 +140,10 @@ class Floor: #hver bygning inneholder etasjer
         self.level = level
         self.rooms: List[Room] = [] #Assosiasjon. Etasje has a room.
 class Room: #hver etasje inneholder rom/flere room definert under Floor
-    def __init__(self, floor: Floor, size: float, name=None):
+    def __init__(self, floor: Floor, size: float, room_name: str):
         self.floor: Floor = floor
         self.size: float = size
-        self.name: str = name
+        self.room_name: str = room_name
         self.devices: List[Device] = [] #assosiasjon. Room has a device.     
 
 class SmartHouse:
@@ -203,11 +204,17 @@ class SmartHouse:
         This methods returns the list of all registered rooms in the house.
         The resulting list has no particular order.
         """
-        rooms = []
-        for floor in self.floors:
-            rooms.extend(floor.rooms)
-        return rooms
+        roomListe: list[Room] = []
+        for floor in self.floors: #for hver etasje i huset
+            for eachRoom in floor.rooms:   #for hvert rom i etasjen
+             roomListe.append(eachRoom)    #legger til rommene i listen over rom
+        return roomListe #returnerer listen over rom helt til slutt
 
+        # devices = []
+        # for floor in self.floors:
+        #     for room in floor.rooms:
+        #         devices.extend(room.devices)
+        # return devices
 
     def get_area(self):
         """
@@ -221,9 +228,19 @@ class SmartHouse:
         This methods registers a given device in a given room.
         """ 
         #under demo_house.py er allerede enhetene laget, så her skal vi bare legge til enhetene i rommenes liste over enheter
+        
+        #SJEKKER FØRST OM ENHETEN ALLEREDE Finnes i et annet rom
+        #vet at dersom en enhet er laget, men ikke tildelt, så er navnet none
+        #vet at dersom en enhet er laget, men ikke tildelt,
+        if device.room_name is not None: #enheten er tildelt er rom, nå må enheten slettes, og fjernes fra rommet.
+            if device in device.room.devices: #dersom enheten er i rommet
+                device.room.devices.remove(device) #fjerner enheten fra rommet
+                
+        # Add the device to the room
         room.devices.append(device) #legger til en device i rommet
         #device.roomName = room.name #tilordner rommet attributtene til rom enheten7
-        device.room = room
+        device.room = room 
+        device.room_name = room.room_name
         return device 
     
     def get_devices(self):
@@ -236,12 +253,13 @@ class SmartHouse:
         #         for device in room.devices: #for hver enhet i rommet
         #             listeAvEnhter.append(device) #legger til enheten i listen over enheter       
         # return listeAvEnhter #returner så til slutt listen av alle enehtene
-    
-        devices = []
-        for floor in self.floors:
-            for room in floor.rooms:
-                devices.extend(room.devices)
-        return devices
+       #husk at SELF er demohus, slik at self.floors.rooms.devices der devices er nivå vil vi hente ut
+        deviceListe: list[Device] = []
+        for eachFloor in self.floors:   #for hver etasje
+            for eachRoom in eachFloor.rooms:   #for hvert rom
+                for eachDevice in eachRoom.devices: #for hvert rom
+                    deviceListe.append(eachDevice)   #legges enheten i listen over enheter
+        return deviceListe #returnere til slutt listen
 
  
     def get_device_by_id(self, device_id: str):
