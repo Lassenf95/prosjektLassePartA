@@ -233,8 +233,13 @@ class SmartHouse:
         #vet at dersom en enhet er laget, men ikke tildelt, så er navnet none
         #vet at dersom en enhet er laget, men ikke tildelt,
         if device.room_name is not None: #enheten er tildelt er rom, nå må enheten slettes, og fjernes fra rommet.
-            if device in device.room.devices: #dersom enheten er i rommet
-                device.room.devices.remove(device) #fjerner enheten fra rommet
+            for eachFloor in self.floors: #for hver etasje i huset
+                for eachRoom in eachFloor.rooms: #for hvert rom i etasjen
+                    if device in eachRoom.devices: #dersom enheten er i rommet
+                        eachRoom.devices.remove(device)
+                        
+            # if device in device.room.devices: #dersom enheten er i rommet
+            #     device.room.devices.remove(device) #fjerner enheten fra rommet
                 
         # Add the device to the room
         room.devices.append(device) #legger til en device i rommet
