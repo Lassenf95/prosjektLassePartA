@@ -19,24 +19,24 @@ class Measurement:
 # TODO: Add your own classes here!
 
 class Device: #hvert rom inneholder devicer deifnert under Room. Device er superklasse for både sensorer og aktuatorer
-    def __init__(self, id: str, supplier: str, model_name: str, device_name: str):
+    def __init__(self, id: str, supplier: str, model_name: str, device_type: str):
         self.room_name = None   #ved opprettelse av devier så må rom attributtene tildeles senere når devicen blir plassert
         self.id= id
         self.supplier= supplier
         self.model_name= model_name
-        self.device_name = device_name #lånt fra LF istedenfor å ha en ny klasse for hver eneste type av sensorer..
+        self.device_type = device_type #lånt fra LF istedenfor å ha en ny klasse for hver eneste type av sensorer..
         #self.room = None  # Add this line to initialize the room attribute 
      #Lånt det under fra fasit TODO FJERNE      
    
     def get_device_type(self) -> str:
-        return self.device_name
+        return self.device_type
     
     
     def is_actuator(self) -> bool:
-        return False
+        pass
 
     def is_sensor(self) -> bool:
-        return False
+        pass
     
     #     return True 
     
@@ -54,8 +54,8 @@ class Device: #hvert rom inneholder devicer deifnert under Room. Device er super
     #     pass
 
 class Sensor(Device): #sensorer is-a device. Arver
-    def __init__(self, id: str, supplier: str, model_name: str, device_name:str,  sensor_unit: str):
-        super().__init__(id, supplier, model_name,device_name) 
+    def __init__(self, id: str, supplier: str, model_name: str, device_type:str,  sensor_unit: str):
+        super().__init__(id, supplier, model_name,device_type) 
         self.sensor_unit = sensor_unit  #her defineres målenehten til sensoren.
 
     def is_sensor(self):
@@ -71,9 +71,9 @@ class Sensor(Device): #sensorer is-a device. Arver
     
 
 class Actuator(Device): #Actuator er en device. Arver(is a)
-    def __init__(self, id: str, supplier: str, model_name: str, device_name: str):
-        super().__init__(id,supplier,model_name, device_name)
-        self.state = False #default til av før noe annet er nevnt
+    def __init__(self, id: str, supplier: str, model_name: str, device_type: str):
+        super().__init__(id,supplier,model_name, device_type)
+        self.state: Union[bool, float, int] = False #default til av før noe annet er nevnt
         self.sensor_unit= None #
     #Lånt det under fra fasit TODO FJERNE     
     def is_actuator(self) -> bool:
@@ -95,9 +95,9 @@ class Actuator(Device): #Actuator er en device. Arver(is a)
         return self.state is not False
     
     # c#lass CombiActuatorSensor(Actuator, Sensor):
-#     def __init__(self, id: str, supplier: str, model_name: str, device_name: str, sensor_unit: str):
-#         Actuator.__init__(self, id, supplier, model_name, device_name)
-#         Sensor.__init__(self, id, supplier, model_name, device_name, sensor_unit)
+#     def __init__(self, id: str, supplier: str, model_name: str, device_type: str, sensor_unit: str):
+#         Actuator.__init__(self, id, supplier, model_name, device_type)
+#         Sensor.__init__(self, id, supplier, model_name, device_type, sensor_unit)
 #         #self.sensor_unit = sensor_unit
 #         self.state = False  # default til av før noe annet er nevnt
 #     # TODO lånt fra løsningsforslag 
@@ -105,10 +105,10 @@ class Actuator(Device): #Actuator er en device. Arver(is a)
 # 
 
 class MIXActuatorSensor(Device) : #Actuator, Sensor): TODO fikse denne med arv...
-    def __init__(self, id: str, supplier: str, model_name: str, device_name: str, sensor_unit: str):
-        #Actuator.__init__(self, id, supplier, model_name, device_name)
-        #Sensor.__init__(self, id, supplier, model_name, device_name, sensor_unit)
-        super().__init__(id, supplier, model_name, device_name)
+    def __init__(self, id: str, supplier: str, model_name: str, device_type: str, sensor_unit: str):
+        #Actuator.__init__(self, id, supplier, model_name, device_type)
+        #Sensor.__init__(self, id, supplier, model_name, device_type, sensor_unit)
+        super().__init__(id, supplier, model_name, device_type)
         self.sensor_unit = sensor_unit
         self.state = False  # default til av før noe annet er nevnt
 
@@ -145,6 +145,14 @@ class Room: #hver etasje inneholder rom/flere room definert under Floor
         self.size: float = size
         self.room_name: str = room_name
         self.devices: List[Device] = [] #assosiasjon. Room has a device.     
+        
+        #OBS DELB DELB DELB DELB DELB DELB DELB DELB DELB DELB DELB DELB DELB
+        self.id = None  # ID er ikke kjent ved opprettelse
+
+    def set_id(self, room_id):
+            self.id = room_id
+#OBS DELB DELB DELB DELB DELB DELB DELB DELB DELB DELB DELB DELB DELB
+
 
 class SmartHouse:
     """
