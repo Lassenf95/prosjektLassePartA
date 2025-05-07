@@ -27,7 +27,19 @@ class Device: #hvert rom inneholder devicer deifnert under Room. Device er super
         self.device_type = device_type #lånt fra LF istedenfor å ha en ny klasse for hver eneste type av sensorer..
         #self.room = None  # Add this line to initialize the room attribute 
      #Lånt det under fra fasit TODO FJERNE      
-   
+     
+    def to_dict(self) -> str:
+        return{ 'room_name': self.room_name, #her er rommet til enheten
+                'id': self.id,
+                'supplier': self.supplier, 
+                'model_name': self.model_name,
+                'device_type': self.device_type,
+                
+            }
+            
+            
+        
+    
     def get_device_type(self) -> str:
         return self.device_type
     
@@ -139,6 +151,8 @@ class Floor: #hver bygning inneholder etasjer
     def __init__(self, level: int):
         self.level = level
         self.rooms: List[Room] = [] #Assosiasjon. Etasje has a room.
+          
+    
 class Room: #hver etasje inneholder rom/flere room definert under Floor
     def __init__(self, floor: Floor, size: float, room_name: str):
         self.floor: Floor = floor
