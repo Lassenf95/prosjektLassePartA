@@ -193,6 +193,17 @@ class SmartHouseRepository:
         lokalCursor.close()
         return value
 
+    def read_actuator_state(self, actuator_id) -> int: #LAFO lagt til for del C
+        # actuator_id =  #iden to actuator which state is to be read
+        curs = self.cursor()
+        queryReqB = ('SELECT d.id, d.category, d.state from devices d WHERE d.id = ?')         
+        curs.execute(queryReqB, (actuator_id,)) #placeholder igjen for å unngå SQL-injection.. MERK , bak actuator id for å sende som tuple, hvis ikke deler SQLIte den opp i antall tegn...
+        results = curs.fetchall()
+        # Close the connection
+        curs.close()
+        if results[0][1] == 'actuator':
+          return results[0][2]
+        return None
 
     def update_actuator_state(self, actuator):
         """
