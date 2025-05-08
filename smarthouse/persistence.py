@@ -148,26 +148,55 @@ class SmartHouseRepository:
         # return dummySmarthus
         return dummySmarthus
 
+
+    def add_sensor_measurement_and_save(self, sensorID: str, timestamp:str, value:float, unit:str):
+        lokalCursor = self.conn.cursor()
+        queryReg = 'INSERT INTO measurements (device, ts, value, unit) VALUES (?, ?, ?, ?)'
+        lokalCursor.execute(queryReg, (sensorID, timestamp, value, unit))
+        self.conn.commit()  # Commit the changes
+        lokalCursor.close()
+    
+    def delete_oldest_measurements_and_save(self, sensor: Sensor):
+        sensorID = sensor.id
+        lokalCursor = self.conn.cursor()
+        queryReg = 'DELETE FROM measurements WHERE device = ? AND ts = (SELECT ts FROM measurements WHERE device = ? ORDER BY ts ASC LIMIT 1);'
+        
+        lokalCursor.execute(queryReg, (sensorID, sensorID))
+        rowsAffected= lokalCursor.rowcount
+        self.conn.commit()  # Commit the changes
+        lokalCursor.close()            
+        return rowsAffected
+     
+    def get_all_sensor_readings(self,sensorID: str):
+        lokalCursor = self.conn.cursor()
+        query_reg = 'SELECT device, ts, value, unit from measurements m WHERE m.device = ? ORDER BY ts DESC'        
+        lokalCursor.execute(query_reg, (sensorID,))
+        resultat = lokalCursor.fetchall() #henter ut alt
+        lokalCursor.close()
+        return resultat
+        
+            
+    
     def get_latest_reading(self, sensor) -> Optional[Measurement]:
-        """
-        Retrieves the most recent sensor reading for the given sensor if available.
-        Returns None if the given object has no sensor readings.
-        """
+        # """
+        # Retrieves the most recent sensor reading for the given sensor if available.
+        # Returns None if the given object has no sensor readings.
+        # """
         # TODO: After loading the smarthouse, continue here
         #LAFO: OBS, vet allerede fra 'Dbeaver at ikke det nødvendigvis er målinger for alle enhetnene... derfor må jeg sjekke om det er målinger for den enheten jeg henter ut
-        #       If there are no measurements, return None.
-        #       If there are measurements, return the most recent one.
-        ##       The result should be a Measurement object.
+        # If there are no measurements, return None.
+        # If there are measurements, return the most recent one.
+        ## The result should be a Measurement object.
         #lager defor en spørring som henter ut alle målinger for den gitt enhten, dersom enheten har målinger
-        
+
         IdLokal = sensor.id #henter IDen til enheten
         #return Measurement(timestamp, value, self.sensor_unit)
-        
+
         #henter først ut alle sensorer og ser om iden finnes i databasen
-        
-        
+
+
         #hvis den ikke finnes, returner None
-        
+
         lokalCursor = self.conn.cursor()
         #OBS bruker placerholder for å unngå SQL injection
         query_reg = 'SELECT count(*) FROM measurements where device =?'
@@ -177,19 +206,19 @@ class SmartHouseRepository:
         #if lokalCursor.execute('SELECT count(*) FROM measurements where device ='+ IdLokal) == 0:
         if antallForekomster == 0: #eller lokalCursor.execute('SELECT count(*) FROM measurements where device ='+ IdLokal
             return None #finner ikke noen enheter, da finner jeg heller ikke noen målinger, returnerer None
-        
+
         #hvis det finnes målinger, henter jeg ut den nyeste målingen
         #lokalCursor.execute('SELECT MAX(ts), value ,device from measurements WHERE device ='+ IdLokal)
         query_regnR2 = 'SELECT MAX(ts), value ,device from measurements WHERE device =?'
         lokalCursor.execute(query_regnR2, (IdLokal,))
         resultat = lokalCursor.fetchall() #henter ut n
-        
+
         #dersom verdiene likevel er none, så returner jeg None
         #TODO
-      
-      
+
+
         #har bekreftet at enheten finnes, og at det eksiterer en gyldiig mååling for den.
-        value = Measurement(resultat[0][0], resultat[0][1], resultat[0][2]) #lager et nytt measurement objekt med tidspunkt, verdi og enhet       
+        value = Measurement(resultat[0][0], resultat[0][1], resultat[0][2]) #lager et nytt measurement objekt med tidspunkt, verdi og enhet
         lokalCursor.close()
         return value
 
