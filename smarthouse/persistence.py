@@ -182,46 +182,29 @@ class SmartHouseRepository:
         # Retrieves the most recent sensor reading for the given sensor if available.
         # Returns None if the given object has no sensor readings.
         # """
-        # TODO: After loading the smarthouse, continue here
-        #LAFO: OBS, vet allerede fra 'Dbeaver at ikke det nødvendigvis er målinger for alle enhetnene... derfor må jeg sjekke om det er målinger for den enheten jeg henter ut
-        # If there are no measurements, return None.
-        # If there are measurements, return the most recent one.
-        ## The result should be a Measurement object.
-        #lager defor en spørring som henter ut alle målinger for den gitt enhten, dersom enheten har målinger
-
-        IdLokal = sensor.id #henter IDen til enheten
-        #return Measurement(timestamp, value, self.sensor_unit)
-
-        #henter først ut alle sensorer og ser om iden finnes i databasen
-
-
-        #hvis den ikke finnes, returner None
-
-        lokalCursor = self.conn.cursor()
-        #OBS bruker placerholder for å unngå SQL injection
-        query_reg = 'SELECT count(*) FROM measurements where device =?'
-        lokalCursor.execute(query_reg, (IdLokal,)) #henter ut antall forekomster av enheten i databasen
-        antallForekomster = lokalCursor.fetchone()[0] #henter ut antall forekomster av enheten i databasen
-        #hvis det ikke finnes noen forekomster av enheten i databasen, returner None
-        #if lokalCursor.execute('SELECT count(*) FROM measurements where device ='+ IdLokal) == 0:
-        if antallForekomster == 0: #eller lokalCursor.execute('SELECT count(*) FROM measurements where device ='+ IdLokal
-            return None #finner ikke noen enheter, da finner jeg heller ikke noen målinger, returnerer None
-
-        #hvis det finnes målinger, henter jeg ut den nyeste målingen
-        #lokalCursor.execute('SELECT MAX(ts), value ,device from measurements WHERE device ='+ IdLokal)
-        query_regnR2 = 'SELECT MAX(ts), value ,device from measurements WHERE device =?'
-        lokalCursor.execute(query_regnR2, (IdLokal,))
-        resultat = lokalCursor.fetchall() #henter ut n
-
-        #dersom verdiene likevel er none, så returner jeg None
-        #TODO
-
-
-        #har bekreftet at enheten finnes, og at det eksiterer en gyldiig mååling for den.
-        value = Measurement(resultat[0][0], resultat[0][1], resultat[0][2]) #lager et nytt measurement objekt med tidspunkt, verdi og enhet
+        
+        # LAFO pga del C ønsker jeg å kunne sende denne funksjonen både ID og sensorinstans, trenger bare iden
+        if isinstance(sensor, Sensor):
+            IdLokal = sensor.id  
+        elif isinstance(sensor, str): #for del C, sender bare iden som string
+            IdLokal = sensor
+        else:
+            return None  # Invalid input type
+        
+        lokalCursor = self.conn.cursor()        
+        query_reg = 'SELECT m.device, m.ts, m.value, m.unit FROM measurements m WHERE m.device = ? ORDER BY ts DESC LIMIT 1'
+        lokalCursor.execute(query_reg, (IdLokal,)) 
+        result = lokalCursor.fetchone() 
+    
+        if result is None:
+            lokalCursor.close()  # Close the cursor before returning
+            return None  # No measurements found
+    
+         # Create a Measurement object
+        measurement = Measurement(timestamp=result[1], value=result[2], unit=result[3])  #[0 ]er device
         lokalCursor.close()
-        return value
-
+        return measurement
+    
     def read_actuator_state(self, actuator_id) -> int: #LAFO lagt til for del C
         # actuator_id =  #iden to actuator which state is to be read
         curs = self.cursor()

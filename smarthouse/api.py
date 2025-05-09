@@ -225,39 +225,59 @@ def get_device_by_id(uuid: str):# -> dict[str, Union[str, int, list[str]]]:
     This endpoint returns an object that provides information
     about the device with uuid = device.id
     """
-    devices = smarthouse.get_devices()  # Get all devices in the smarthouse    
-    for device in devices:
-        if device.id == uuid:
-            return DeviceResponse (   
-                room_name= device.room_name, #her er rommet til enheten
-                id=  device.id,
-                supplier= device.supplier, 
-                model_name= device.model_name,
-                device_type= device.device_type
-            )
-    return ErrorResponse(error=f"Device with id {uuid} was not found.")        
-            
-@app.get("/smarthouse/device/{uuid}/current")
-def get_measurement_by_device_id(uuid: str) ->  Union[MeasurementResponse, ErrorResponse]: 
-    """
-    This endpoint returns the latest measurement for a device with the given UUID.
-    """
-    sensor = smarthouse.get_device_by_id(uuid) 
-    if sensor is None:
-        return ErrorResponse(error= f"Device with UUID {uuid} not found.")
-    if isinstance(sensor, Sensor) is False:
-        return  ErrorResponse(error=f"Device with UUID {uuid} is not an sensor, meausrement can't be read.")
-    measure = repo.get_latest_reading(sensor)
-    # MERK dette under blir er erstattet av Pydantic model(basemodel i toppen)
-    # return {
-    #     'timestamp': measure.timestamp,
-    #     'value': measure.value,
-    #     'unit': measure.unit
-    #     }
-    if measure is None:
-        return ErrorResponse(error="No measurements found for this sensor.")
+    device = smarthouse.get_device_by_id(uuid)  # Get all devices in the smarthouse    
+    if device is None:
+        return ErrorResponse(error=f"Device with id {uuid} was not found.")        
+    return DeviceResponse (   
+        room_name= device.room_name, #her er rommet til enheten
+        id=  device.id,
+        supplier= device.supplier, 
+        model_name= device.model_name,
+        device_type= device.device_type
+        )
     
-    return MeasurementResponse(deviceId=measure[0],tidspunkt=measure[1],value=measure[2],unit=measure[3] )       
+# @app.get("/smarthouse/device/{uuid}/current")
+# def get_measurement_by_device_id(uuid: str) ->  Union[MeasurementResponse, ErrorResponse]: 
+#     """
+#     This endpoint returns the latest measurement for a device with the given UUID.
+#     """
+#     sensor = smarthouse.get_device_by_id(uuid) 
+#     if sensor is None:
+#         return ErrorResponse(error= f"Device with UUID {uuid} not found.")
+#     if isinstance(sensor, Sensor) is False:
+#         return  ErrorResponse(error=f"Device with UUID {uuid} is not an sensor, meausrement can't be read.")
+#     measure = repo.get_latest_reading(sensor)
+#     # MERK dette under blir er erstattet av Pydantic model(basemodel i toppen)
+#     # return {
+#     #     'timestamp': measure.timestamp,
+#     #     'value': measure.value,
+#     #     'unit': measure.unit
+#     #     }
+#     if measure is None:
+#         return ErrorResponse(error="No measurements found for this sensor.")
+
+#     return MeasurementResponse(deviceId=uuid,tidspunkt=measure[0],value=measure[1],unit=measure[2])       
+
+@app.get("/smarthouse/device/{uuid}/current")
+def get_measurement_by_device_id(uuid: str): # -> dict[str, Union[str, int]]:
+    """
+    This endpoint returns the latest measurement for the specified device.
+    """
+    device = smarthouse.get_device_by_id(uuid)  # Get all devices in the smarthouse    
+    if device is None:
+        return ErrorResponse(error=f"Device with id {uuid} was not found.")   
+    # Check if the device is a Sensor
+    if isinstance(device, Sensor):
+        
+        measure = repo.get_latest_reading(uuid)  # Pass the device as a Sensor
+        if measure is not None:
+            return MeasurementResponse(
+                deviceId= uuid, #uses uuid as Measure does onlu contain ts value and unit
+                tidspunkt= measure.timestamp,
+                value= measure.value,
+                unit= measure.unit
+            )
+    return ErrorResponse(error=f"The specified device is not a sensor.")
 
 @app.post("/smarthouse/device/{uuid}/current")
 def post_measurement_by_device_id(uuid: str, measurement : MeasurementCreate): 
