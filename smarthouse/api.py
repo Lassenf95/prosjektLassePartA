@@ -324,7 +324,8 @@ def get_n_last_measurements_or_all(uuid: str, limit : Optional[int] = None): #se
 @app.delete("/smarthouse/device/{uuid}/oldest") #NOTICE i persistency, in the wuery, DESC wil delete newest, ASC will delete oldest.
 def delete_oldest_measurement_by_device_id(uuid: str): 
     """
-    This endpoints deletes oldest measurement from repo is sensor and has vale"""
+    This endpoint deletes the oldest measurement from repo if sensor and has value
+    """
     sensor = smarthouse.get_device_by_id(uuid) 
     if sensor is None:
         return {"error": f"Device with UUID {uuid} not found."}
